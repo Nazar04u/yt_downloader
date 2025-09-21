@@ -18,6 +18,8 @@ def get_youtube_m4a_bytes(url: str) -> tuple[io.BytesIO, str]:
     ydl_opts = {
         "format": "bestaudio[ext=m4a]/bestaudio/best",
         "outtmpl": temp_filename,
+        "cookiefile": "cookies.txt",
+        "geo_bypass": True,
         "postprocessors": [
             {
                 "key": "FFmpegExtractAudio",
@@ -28,6 +30,7 @@ def get_youtube_m4a_bytes(url: str) -> tuple[io.BytesIO, str]:
         "quiet": True,
         "no_warnings": True,
     }
+
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=True)
