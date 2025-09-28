@@ -20,7 +20,7 @@ function App() {
     setError('');
 
     try {
-      const response = await axios.get('http://localhost:8008/download', {
+      const response = await axios.get('https://yt-downloader-mkl4.onrender.com:8008/download', {
         params: { url: url.trim() },
         responseType: 'blob',
       });
