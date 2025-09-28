@@ -19,6 +19,10 @@ services:
       npm install
       npm run build
     staticPublishPath: ./build
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
     routes:
       - type: rewrite
         source: /*

@@ -10,7 +10,7 @@ function PrankPage() {
         
         <div className="prank-image">
           <img 
-            src="/swedish-protective-security-act.jpg" 
+            src={process.env.PUBLIC_URL + "/swedish-protective-security-act.jpg"} 
             alt="Swedish Protective Security Act" 
             className="security-image"
           />

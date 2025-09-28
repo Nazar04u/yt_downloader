@@ -11,7 +11,12 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3001", "http://localhost:3000"],  # React dev server ports
+    allow_origins=[
+        "http://localhost:3001", 
+        "http://localhost:3000",  # React dev server ports
+        "https://yt-downloader-frontend.onrender.com",  # Production frontend
+        "https://yt-downloader-mkl4.onrender.com"  # Your current domain
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -20,7 +20,12 @@ function App() {
     setError('');
 
     try {
-      const response = await axios.get('https://yt-downloader-mkl4.onrender.com:8008/download', {
+      // Use environment-based API URL
+      const API_BASE_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://yt-downloader-backend.onrender.com' 
+        : 'http://localhost:8008';
+      
+      const response = await axios.get(`${API_BASE_URL}/download`, {
         params: { url: url.trim() },
         responseType: 'blob',
       });
