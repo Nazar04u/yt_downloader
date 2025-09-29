@@ -22,8 +22,8 @@ function App() {
     try {
       // Use relative API in production since frontend is served by backend
       const API_BASE_URL = process.env.NODE_ENV === 'production'
-        ? ''
-        : 'http://localhost:8008';
+      ? 'https://yt-downloader-kcha.onrender.com'
+      : 'http://localhost:8008'
 
       const response = await axios.get(`${API_BASE_URL}/download`, {
         params: { url: url.trim() },
