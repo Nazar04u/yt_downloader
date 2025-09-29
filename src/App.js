@@ -20,11 +20,11 @@ function App() {
     setError('');
 
     try {
-      // Use environment-based API URL
-      const API_BASE_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://yt-downloader-backend.onrender.com' 
+      // Use relative API in production since frontend is served by backend
+      const API_BASE_URL = process.env.NODE_ENV === 'production'
+        ? ''
         : 'http://localhost:8008';
-      
+
       const response = await axios.get(`${API_BASE_URL}/download`, {
         params: { url: url.trim() },
         responseType: 'blob',
