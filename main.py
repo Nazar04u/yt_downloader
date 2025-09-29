@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Query
-from fastapi.responses import StreamingResponse, JSONResponse, FileResponse
+from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import yt_dlp
@@ -88,25 +88,6 @@ async def download_audio(url: str = Query(..., description="YouTube video URL"))
     except Exception as e:
         return JSONResponse(status_code=400, content={"error": str(e)})
 
-# Serve React build
-# Serve static assets from CRA build directory
+# Serve React build at root (serves index.html and all static assets)
 if os.path.isdir("build"):
-    app.mount("/static", StaticFiles(directory="build/static"), name="static")
-
-
-@app.get("/")
-async def serve_index_root():
-    if os.path.isfile("build/index.html"):
-        return FileResponse("build/index.html")
-    return JSONResponse(status_code=404, content={"error": "Frontend not built yet"})
-
-
-@app.get("/{full_path:path}")
-async def serve_index_catch_all(full_path: str):
-    # Let explicit API route(s) handle their paths
-    if full_path.startswith("download"):
-        return JSONResponse(status_code=404, content={"error": "Not Found"})
-
-    if os.path.isfile("build/index.html"):
-        return FileResponse("build/index.html")
-    return JSONResponse(status_code=404, content={"error": "Frontend not built yet"})
+    app.mount("/", StaticFiles(directory="build", html=True), name="frontend")
