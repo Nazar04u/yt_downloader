@@ -16,7 +16,8 @@ app.add_middleware(
         "http://localhost:3001", 
         "http://localhost:3000",  # React dev server ports
         "https://yt-downloader-frontend.onrender.com",  # Production frontend
-        "https://yt-downloader-mkl4.onrender.com"  # Your current domain
+        "https://yt-downloader-mkl4.onrender.com",  # Your current domain
+        "https://yt-downloader-kcha.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -88,6 +89,3 @@ async def download_audio(url: str = Query(..., description="YouTube video URL"))
     except Exception as e:
         return JSONResponse(status_code=400, content={"error": str(e)})
 
-# Serve React build at root (serves index.html and all static assets)
-if os.path.isdir("build"):
-    app.mount("/", StaticFiles(directory="build", html=True), name="frontend")
