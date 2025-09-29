@@ -18,7 +18,7 @@ app.add_middleware(
         "https://yt-downloader-frontend.onrender.com",  # Production frontend
         "https://yt-downloader-mkl4.onrender.com",  # Your current domain
         "https://yt-downloader-kcha.onrender.com",
-        "https://yt-downloader-1-sxfu.onrender.com/"
+        "https://yt-downloader-1-sxfu.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
